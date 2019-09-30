@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/equipment/")
 public class EquipmentController {
@@ -22,9 +24,10 @@ public class EquipmentController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ApiOperation(value = "Tool info", notes = "Help Harry to add necessary tools for each year!")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Equipment> add(@ApiParam(value = "tool", required = true, name = "Tool Info")
-                                         @RequestBody EquipmentDto dto) {
-        return new ResponseEntity<>(equipmentService.add(dto), HttpStatus.OK);
+                                         @Valid @RequestBody EquipmentDto dto) {
+        return new ResponseEntity<>(equipmentService.add(dto), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/herbs/")
 public class HerbController {
@@ -32,7 +34,7 @@ public class HerbController {
     @RequestMapping(value = "/add", method = RequestMethod.POST) // 201
     @ApiOperation(value = "Herb info", notes = "Help Harry to write all herbs into book!")
     public Herb addHerb(@ApiParam(value = "herb", required = true, name = "Herb Info")
-                        @RequestBody HerbDto dto) {
+                        @Valid @RequestBody HerbDto dto) {
         return herbService.add(dto);
     }
 

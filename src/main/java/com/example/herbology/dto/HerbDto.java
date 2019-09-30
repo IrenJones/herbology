@@ -4,9 +4,12 @@ import com.example.herbology.model.Continent;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 public class HerbDto {
 
+    @NotNull
     @ApiModelProperty(example = "Mandragora", required = true)
     String name;
 
