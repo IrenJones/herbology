@@ -9,6 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Objects;
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class HerbServiceImpl implements HerbService {
@@ -26,8 +30,13 @@ public class HerbServiceImpl implements HerbService {
     }
 
     @Override
-    public void update() {
-
+    public Herb update(Long id, HerbDto dto) {
+        if(Objects.nonNull(id) && herbRepository.existsById(id)){
+            Herb herb = mapper.convertValue(dto, Herb.class);
+            herb.setId(id);
+            return herbRepository.save(herb);
+        }
+        throw new EntityNotFoundException("Herb id " + id);
     }
 
     @Override

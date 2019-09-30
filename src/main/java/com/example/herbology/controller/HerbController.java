@@ -19,21 +19,28 @@ public class HerbController {
 
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(){
-       return "Hello";
+    public String test() {
+        return "Hello";
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> testTwo(){
+    public ResponseEntity<String> testTwo() {
         return new ResponseEntity<>("Darova", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST) // 201
     @ApiOperation(value = "Herb info", notes = "Help Harry to write all herbs into book!")
     public Herb addHerb(@ApiParam(value = "herb", required = true, name = "Herb Info")
-                            @RequestBody HerbDto dto){
+                        @RequestBody HerbDto dto) {
         return herbService.add(dto);
     }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT) // 200
+    @ApiOperation(value = "Herb info", notes = "Help Harry to write all herbs into book!")
+    public Herb updateHerb(@ApiParam(value = "herb", required = true, name = "Herb Info")
+                           @RequestBody HerbDto dto,
+                           @PathVariable(value = "id") Long id) {
+        return herbService.update(id, dto);
+    }
 }

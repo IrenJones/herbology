@@ -7,7 +7,7 @@ public interface HerbService {
 
     Herb add(HerbDto dto);
 
-    void update();
+    Herb update(Long id, HerbDto dto);
 
     void delete();
 
