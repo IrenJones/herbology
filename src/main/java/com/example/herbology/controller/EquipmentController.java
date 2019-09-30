@@ -5,6 +5,7 @@ import com.example.herbology.dto.HerbDto;
 import com.example.herbology.model.Equipment;
 import com.example.herbology.model.Herb;
 import com.example.herbology.service.EquipmentService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/equipment/")
+@Api(value = "Wonderful Controller")
 public class EquipmentController {
 
     @Autowired
