@@ -3,10 +3,12 @@ package com.example.herbology.dto;
 import com.example.herbology.model.Continent;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotNull;
 
 @Data
+@Accessors(chain = true)
 public class HerbDto {
 
     @NotNull

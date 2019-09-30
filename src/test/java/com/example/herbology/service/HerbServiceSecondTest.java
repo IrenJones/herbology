@@ -7,28 +7,38 @@ import com.example.herbology.repository.HerbRepository;
 import com.example.herbology.service.impl.HerbServiceImpl;
 import com.example.herbology.utils.HerbGeneratorUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.example.herbology.StrictMockito.strictMock;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.util.ReflectionTestUtils.setField;
 
-@Ignore
-@RunWith(MockitoJUnitRunner.class)
-public class HerbServiceTest {
+@RunWith(SpringRunner.class)
+public class HerbServiceSecondTest {
+
+    @Mock
+    private ObjectMapper mapperMock;
+
+    @Mock
+    private HerbRepository herbRepositoryMock;
 
     @InjectMocks
     private HerbService herbService = new HerbServiceImpl();
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void successfulCreationWhenParametersValid(){
@@ -38,18 +48,8 @@ public class HerbServiceTest {
         Herb expectedHerb = HerbGeneratorUtils.createHerb(1L);
 
         // when
-        setField(herbService, "mapper",
-                strictMock(ObjectMapper.class, mock ->
-                        when(mock.convertValue(dto, Herb.class)).thenReturn(herb)
-                )
-        );
-
-        //todo doesn't work (right now helps only adding Herb save(Herb herb); to repository)
-        setField(herbService, "herbRepository",
-                strictMock(HerbRepository.class, mock ->
-                        when(mock.save(any(Herb.class))).thenReturn(expectedHerb)
-                )
-        );
+        when(mapperMock.convertValue(dto, Herb.class)).thenReturn(herb);
+        when(herbRepositoryMock.save(any(Herb.class))).thenReturn(expectedHerb);
 
         // action
         Herb result = herbService.add(dto);
