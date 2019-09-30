@@ -1,0 +1,42 @@
+package com.example.herbology.service.impl;
+
+import com.example.herbology.dto.HerbDto;
+import com.example.herbology.model.Herb;
+import com.example.herbology.repository.HerbRepository;
+import com.example.herbology.service.HerbService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+public class HerbServiceImpl implements HerbService {
+
+    @Autowired
+    private ObjectMapper mapper;
+
+    @Autowired
+    private HerbRepository herbRepository;
+
+    @Override
+    public Herb add(HerbDto dto) {
+        Herb herb = mapper.convertValue(dto, Herb.class);
+        return herbRepository.save(herb);
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void delete() {
+
+    }
+
+    @Override
+    public void find() {
+
+    }
+}
