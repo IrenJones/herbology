@@ -23,7 +23,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
-@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class HerbServiceTest {
 

@@ -11,5 +11,5 @@ public interface HerbService {
 
     void delete();
 
-    void find();
+    Herb getById(Long id);
 }

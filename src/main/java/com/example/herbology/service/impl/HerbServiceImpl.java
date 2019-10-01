@@ -44,7 +44,12 @@ public class HerbServiceImpl implements HerbService {
     }
 
     @Override
-    public void find() {
-
+    public Herb getById(Long id) {
+        if(Objects.nonNull(id) && herbRepository.existsById(id)) {
+            return herbRepository.findById(id).get();
+        }
+        else {
+            throw new EntityNotFoundException("Herb id " + id);
+        }
     }
 }

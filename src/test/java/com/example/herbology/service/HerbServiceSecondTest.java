@@ -1,5 +1,6 @@
 package com.example.herbology.service;
 
+import com.example.herbology.HerbologyApplicationTests;
 import com.example.herbology.dto.HerbDto;
 import com.example.herbology.model.Continent;
 import com.example.herbology.model.Herb;
@@ -8,12 +9,13 @@ import com.example.herbology.service.impl.HerbServiceImpl;
 import com.example.herbology.utils.HerbGeneratorUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,13 +26,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class HerbServiceSecondTest {
 
     @Mock
-    private ObjectMapper mapperMock;
+    private ObjectMapper mapper;
 
     @Mock
-    private HerbRepository herbRepositoryMock;
+    private HerbRepository herbRepository;
 
     @InjectMocks
     private HerbService herbService = new HerbServiceImpl();
@@ -48,8 +51,8 @@ public class HerbServiceSecondTest {
         Herb expectedHerb = HerbGeneratorUtils.createHerb(1L);
 
         // when
-        when(mapperMock.convertValue(dto, Herb.class)).thenReturn(herb);
-        when(herbRepositoryMock.save(any(Herb.class))).thenReturn(expectedHerb);
+        when(mapper.convertValue(dto, Herb.class)).thenReturn(herb);
+        when(herbRepository.save(any(Herb.class))).thenReturn(expectedHerb);
 
         // action
         Herb result = herbService.add(dto);
