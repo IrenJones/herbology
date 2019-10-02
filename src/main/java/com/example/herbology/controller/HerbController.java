@@ -1,7 +1,6 @@
 package com.example.herbology.controller;
 
 import com.example.herbology.dto.HerbDto;
-import com.example.herbology.model.Equipment;
 import com.example.herbology.model.Herb;
 import com.example.herbology.service.HerbService;
 import io.swagger.annotations.ApiOperation;
