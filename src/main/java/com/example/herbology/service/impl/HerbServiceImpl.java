@@ -1,6 +1,7 @@
 package com.example.herbology.service.impl;
 
 import com.example.herbology.dto.HerbDto;
+import com.example.herbology.exception.EntityWthErrorsException;
 import com.example.herbology.model.Herb;
 import com.example.herbology.repository.HerbRepository;
 import com.example.herbology.service.HerbService;
@@ -24,8 +25,11 @@ public class HerbServiceImpl implements HerbService {
 
     @Override
     public Herb add(HerbDto dto) {
-        Herb herb = mapper.convertValue(dto, Herb.class);
-        return herbRepository.save(herb);
+        if(Objects.nonNull(dto)) {
+            Herb herb = mapper.convertValue(dto, Herb.class);
+            return herbRepository.save(herb);
+        }
+        throw new EntityWthErrorsException();
     }
 
     @Override

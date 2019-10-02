@@ -25,4 +25,11 @@ public class HerbGeneratorUtils {
                 .setLocation("location")
                 .setName("herb");
     }
+
+    public static HerbDto createErrorHerbDto(){
+        return new HerbDto()
+                .setContinent(Continent.EUROPE)
+                .setIsDangerous(true)
+                .setLocation("location");
+    }
 }

@@ -29,6 +29,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(EntityWthErrorsException.class)
+    private ResponseEntity<ErrorModel> handleEntityNotFound(EntityWthErrorsException ex){
+        ErrorModel error = new ErrorModel(
+                HttpStatus.BAD_REQUEST,
+                LocalDateTime.now(),
+                "Entity contains some errors",
+                ex.getMessage()
+        );
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ErrorModel error = new ErrorModel(

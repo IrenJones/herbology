@@ -1,7 +1,5 @@
 package com.example.herbology.controller;
 
-import com.example.herbology.model.Continent;
-import com.example.herbology.model.Herb;
 import com.example.herbology.service.HerbService;
 import com.example.herbology.utils.HerbGeneratorUtils;
 import org.junit.Test;
@@ -21,7 +19,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(HerbController.class)
@@ -32,8 +29,9 @@ public class HerbControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     @Test
-    public void testReturn200() throws Exception {
+    public void testReturn() throws Exception {
         given(service.getById(any(Long.class))).willReturn(HerbGeneratorUtils.createHerb(3L));
         mockMvc.perform(MockMvcRequestBuilders.get("/herbs/3")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
