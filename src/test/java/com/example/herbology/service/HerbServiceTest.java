@@ -11,7 +11,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static com.example.herbology.StrictMockito.strictMock;
@@ -29,6 +28,7 @@ public class HerbServiceTest {
     @InjectMocks
     private HerbService herbService = new HerbServiceImpl();
 
+    @Ignore
     @Test
     public void successfulCreationWhenParametersValid(){
         // given

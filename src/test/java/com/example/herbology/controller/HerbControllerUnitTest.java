@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HerbController.class)
+@WebMvcTest(value = HerbController.class, secure = false)
 public class HerbControllerUnitTest {
 
     @MockBean

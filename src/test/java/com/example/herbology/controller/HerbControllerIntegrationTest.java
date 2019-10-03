@@ -26,6 +26,7 @@ public class HerbControllerIntegrationTest {
 
     @Autowired
     HerbController herbController;
+
     @Test
     public void testAddHerb() throws Exception {
         HerbDto herb = HerbGeneratorUtils.createHerbDto();
