@@ -3,8 +3,10 @@ package com.example.herbology.config;
 import com.example.herbology.HerbologyApplicationTests;
 import cucumber.api.CucumberOptions;
 import io.cucumber.junit.Cucumber;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
+@Ignore
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty", "json:target/cucumber-reports/cucumber.json"},
