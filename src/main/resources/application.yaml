@@ -19,3 +19,6 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: ${DB_DRIVER}
+
+  liquibase:
+    change-log: classpath:/db/changelog/master.xml
