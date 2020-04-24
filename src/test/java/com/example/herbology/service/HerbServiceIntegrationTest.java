@@ -30,8 +30,6 @@ public class HerbServiceIntegrationTest {
     public void successfulCreationWhenParametersValid(){
         // given
         HerbDto dto = HerbGeneratorUtils.createHerbDto();
-        Herb herb = HerbGeneratorUtils.createHerb();
-        Herb expectedHerb = HerbGeneratorUtils.createHerb(1L);
 
         // action
         Herb result = herbService.add(dto);

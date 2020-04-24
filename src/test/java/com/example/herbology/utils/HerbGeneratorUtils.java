@@ -3,7 +3,9 @@ package com.example.herbology.utils;
 import com.example.herbology.dto.HerbDto;
 import com.example.herbology.model.Continent;
 import com.example.herbology.model.Herb;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class HerbGeneratorUtils {
 
     public static Herb createHerb(){

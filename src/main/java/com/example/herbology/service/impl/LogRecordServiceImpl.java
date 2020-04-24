@@ -6,18 +6,22 @@ import com.example.herbology.repository.CustomLogsRepository;
 import com.example.herbology.repository.LogsRepository;
 import com.example.herbology.service.LogRecordService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class LogRecordServiceImpl implements LogRecordService {
 
-	private final CustomLogsRepository customLogsRepository;
-	private final LogsRepository logsRepository;
-	private final ObjectMapper mapper;
+	@Autowired
+	private CustomLogsRepository customLogsRepository;
+
+	@Autowired
+	private LogsRepository logsRepository;
+
+	@Autowired
+	private ObjectMapper mapper;
 
 	@Override
 	public List<LogRecord> findAll() {

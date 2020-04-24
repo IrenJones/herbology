@@ -1,0 +1,1 @@
+INSERT INTO logs (id, data) VALUES (1, 'gcp');
